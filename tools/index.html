@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Elements</title>
+  <script type="importmap">
+      {
+        "imports": {
+          "@spectrum-web-components/button": "/dist/bundle.js",
+          "lit": "https://cdn.jsdelivr.net/gh/lit/dist@2.8.0/all/lit-all.min.js",
+          "lit/directives/unsafe-html.js": "https://cdn.jsdelivr.net/gh/lit/dist@2.8.0/all/lit-all.min.js",
+          "lit/directives/style-map.js": "https://cdn.jsdelivr.net/gh/lit/dist@2.8.0/all/lit-all.min.js",
+          "lit/directives/class-map.js": "https://cdn.jsdelivr.net/gh/lit/dist@2.8.0/all/lit-all.min.js",
+          "lit/directives/repeat.js": "https://cdn.jsdelivr.net/gh/lit/dist@2.8.0/all/lit-all.min.js",
+          "lit/static-html.js": "https://cdn.jsdelivr.net/gh/lit/dist@2.8.0/all/lit-all.min.js",
+
+          "picosm": "/dist/bundle.js"
+        } 
+      }
+    </script>
+    <style>
+      *, *::before, *::after {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  <title>DA App SDK Sample</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="data:," />
+   
+  <!-- Project App Logic -->
+  <script src="/dist/bundle.js" type="module"></script>
+  <script src="/src/app.js" type="module"></script>
+</head>
+
+<body>
+  <experience-elements-app></experience-elements-app>
+</body>
+
+</html>

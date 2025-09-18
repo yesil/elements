@@ -1,0 +1,76 @@
+<subscribe-all-plans>
+  <h2 slot="header">Creative Cloud Pro</h2>
+  <subscribe-all-plans-toggle slot="toggle"></subscribe-all-plans-toggle>
+  <div slot="icons">
+    <merch-mnemonic name="creative-cloud" size="l"></merch-mnemonic>
+  </div>
+  <div slot="description">
+    Get the apps you need for all kinds of creative work, from photography and graphic design to video, UI/UX, and more.
+    And generate images, video, and audio with Adobe Firefly creative AI.
+  </div>
+
+  <div slot="includes">
+    <h3>Includes</h3>
+    <div class="items">
+      <div class="item"><merch-mnemonic name="photoshop" size="s"></merch-mnemonic> Photoshop</div>
+      <div class="item"><merch-mnemonic name="illustrator" size="s"></merch-mnemonic> Illustrator</div>
+      <div class="item"><merch-mnemonic name="premiere-pro" size="s"></merch-mnemonic> Premiere Pro</div>
+      <div class="item"><merch-mnemonic name="acrobat-pro" size="s"></merch-mnemonic> Acrobat Pro</div>
+      <div class="item"><merch-mnemonic name="indesign" size="s"></merch-mnemonic> InDesign</div>
+      <div class="item"><a href="#">Show all 20+ apps</a></div>
+    </div>
+  </div>
+
+  <div slot="extras">
+    <h3>Extras</h3>
+    <merch-list>
+      <merch-list-item>Unlimited access to standard creative AI image features</merch-list-item>
+      <merch-list-item>4000 monthly generative credits for premium creative AI video and audio
+        features</merch-list-item>
+      <merch-list-item>Adobe Fonts</merch-list-item>
+      <merch-list-item>Step-by-step tutorials</merch-list-item>
+      <merch-list-item>Behance</merch-list-item>
+      <merch-list-item>Creative Cloud Libraries</merch-list-item>
+      <merch-list-item>100GB of cloud storage</merch-list-item>
+    </merch-list>
+  </div>
+
+  <div slot="recommended">
+    <h3>Recommended for</h3>
+    <ul>
+      <li>Photo</li>
+      <li>Graphic design</li>
+      <li>Video</li>
+      <li>Illustration</li>
+      <li>UI and UX</li>
+      <li>Acrobat and PDF</li>
+      <li>Social media</li>
+    </ul>
+  </div>
+
+  <!-- Monthly -->
+  <subscribe-all-plans-type plan-id="cc-pro-monthly">
+    <span slot="title">Monthly</span>
+    <span slot="subtitle">Cancel anytime, no fee</span>
+    <span slot="description">Flexible month-to-month plan.</span>
+    <inline-price slot="price" value="104.99" currency="US$" period="mo"></inline-price>
+  </subscribe-all-plans-type>
+
+  <!-- Annual, billed monthly -->
+  <subscribe-all-plans-type plan-id="cc-pro-annual-billed-monthly">
+    <span slot="title">Annual, billed monthly</span>
+    <span slot="subtitle">Best value</span>
+    <span slot="description">Fee applies if you cancel after the initial period.</span>
+    <inline-price slot="price" value="69.99" currency="US$" period="mo"></inline-price>
+  </subscribe-all-plans-type>
+
+  <!-- Annual, prepaid -->
+  <subscribe-all-plans-type plan-id="cc-pro-annual-prepaid">
+    <span slot="title">Annual, prepaid</span>
+    <span slot="subtitle">One-time payment</span>
+    <span slot="description">No refund after the initial period.</span>
+    <inline-price slot="price" value="779.88" currency="US$" period="yr"></inline-price>
+  </subscribe-all-plans-type>
+
+
+</subscribe-all-plans>
