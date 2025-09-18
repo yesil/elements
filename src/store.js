@@ -73,7 +73,7 @@ export class Store {
   // Creation dialog state
   showCreationDialog = false;
   creationDialogCategory = "templates";
-  themeColor = localStorage.getItem("theme") || "dark";
+  themeColor = localStorage.getItem("theme") || "light";
 
   // Ready state
   isReady = false;

@@ -136,21 +136,7 @@ export class Router {
 
     const hashForParent = newHash ? `#${newHash}` : '';
 
-    if (this.actions?.setHash) {
-      try {
-        this.actions.setHash(hashForParent);
-      } catch (_) {
-        // Parent may not accept hash updates; ignore
-      }
-    }
-
-    try {
-      if (window.parent && window.parent !== window && window.parent.postMessage) {
-        window.parent.postMessage({ action: 'setHash', details: hashForParent }, '*');
-      }
-    } catch (_) {
-      // Ignore cross-origin failures
-    }
+    this.actions.setHash(hashForParent);
 
     this.#updateIframeHash(newHash);
   }
