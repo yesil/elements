@@ -1,12 +1,12 @@
 import { makeObservable } from "picosm";
 import DA_SDK from "https://da.live/nx/utils/sdk.js";
 
-const DEFAULT_SOURCE_CONFIG = {
+const SOURCE_CONFIG = {
   baseUrl: "https://admin.da.live",
   org: "yesil",
   site: "elements",
   branch: "",
-  documentsRoot: "",
+  documentsRoot: "documents",
   manifestPath: "documents/index.json",
   extension: ".html",
   previewBaseUrl: "",
@@ -160,6 +160,10 @@ export class DocumentStore {
   }
 
   async loadApiEndpoint() {
+    const { context } = await DA_SDK;
+    SOURCE_CONFIG.org = context.org;
+    SOURCE_CONFIG.site = context.repo;
+
     if (this.configLoaded && this.apiBaseUrl) {
       return this.apiBaseUrl;
     }
@@ -169,14 +173,14 @@ export class DocumentStore {
       throw new Error("DocumentStore Source configuration requires `org` and `site`");
     }
 
-    const baseUrl = toStringValue(resolved.baseUrl || DEFAULT_SOURCE_CONFIG.baseUrl).replace(/\/+$/, "");
+    const baseUrl = toStringValue(resolved.baseUrl || SOURCE_CONFIG.baseUrl).replace(/\/+$/, "");
     const encodedOrg = encodeURIComponent(resolved.org);
     const encodedSite = encodeURIComponent(resolved.site);
 
     this.sourceBaseUrl = `${baseUrl}/source/${encodedOrg}/${encodedSite}`;
 
     this.branch = trimSlashes(resolved.branch || resolved.projectRoot || "");
-    this.documentsRoot = trimSlashes(resolved.documentsRoot || DEFAULT_SOURCE_CONFIG.documentsRoot);
+    this.documentsRoot = trimSlashes(resolved.documentsRoot || SOURCE_CONFIG.documentsRoot);
     this.documentsRootPath = this.branch
       ? joinPath(this.branch, this.documentsRoot)
       : this.documentsRoot;
@@ -186,7 +190,7 @@ export class DocumentStore {
     );
     this.manifestPath = this.branch ? joinPath(this.branch, manifestRelative) : manifestRelative;
 
-    const ext = resolved.extension || DEFAULT_SOURCE_CONFIG.extension;
+    const ext = resolved.extension || SOURCE_CONFIG.extension;
     this.defaultExtension = ext.startsWith(".") ? ext : `.${ext}`;
 
     this.previewBaseUrl = toStringValue(resolved.previewBaseUrl || resolved.previewUrl || "");
@@ -232,14 +236,10 @@ export class DocumentStore {
   }
 
   async getAccessToken() {
-    const { context, token, actions } = await DA_SDK;
-    console.log("getAccessToken", context, token, actions);
-    if (DocumentStore.token) {
-      this.accessToken = DocumentStore.token;
-      return this.accessToken;
-    }
-    this.accessToken = null;
-    return null;
+    const { token } = await DA_SDK;
+    DocumentStore.token = token;
+    this.accessToken = DocumentStore.token;
+    return this.accessToken;
   }
 
   async saveDocument(doc) {
@@ -591,7 +591,7 @@ export class DocumentStore {
   }
 
   async #resolveConfig() {
-    const resolved = { ...DEFAULT_SOURCE_CONFIG };
+    const resolved = { ...SOURCE_CONFIG };
     const sources = [];
     if (this.providedConfig && typeof this.providedConfig === "object") sources.push(this.providedConfig);
     if (DocumentStore.config) sources.push(DocumentStore.config);
